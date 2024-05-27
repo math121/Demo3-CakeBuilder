@@ -1,5 +1,6 @@
-package com.demo.program;
+package com.demo.program.cake_builder;
 
+import com.demo.program.CakeSize;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 

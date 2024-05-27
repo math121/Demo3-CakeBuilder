@@ -1,4 +1,6 @@
-package com.demo.program;
+package com.demo.program.cake_builder;
+
+import com.demo.program.CakeSize;
 
 public class Cake {
     private final CakeSize size;
@@ -7,7 +9,7 @@ public class Cake {
     private boolean frosting;
     private boolean decorations;
 
-    public Cake(CakeSize size, String flavour, int layers, boolean frosting, boolean decorations) {
+    Cake(CakeSize size, String flavour, int layers, boolean frosting, boolean decorations) {
         this.size = size;
         this.flavour = flavour;
         this.layers = layers;
