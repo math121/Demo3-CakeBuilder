@@ -7,6 +7,8 @@ public class CakeBuilder {
     private CakeSize size;
     private String flavour;
     private int layers;
+    private boolean frosting = false;
+    private boolean decorations = false;
 
     public CakeBuilder useVanilla() {
         flavour = "vanilla";
@@ -43,7 +45,17 @@ public class CakeBuilder {
         return this;
     }
 
+    public CakeBuilder addFrosting() {
+        frosting = true;
+        return this;
+    }
+
+    public CakeBuilder addDecorations() {
+        decorations = true;
+        return this;
+    }
+
     public Cake build() {
-        return new Cake(size, flavour, layers);
+        return new Cake(size, flavour, layers, frosting, decorations);
     }
 }
