@@ -37,6 +37,11 @@ public class CakeBuilder {
         return this;
     }
 
+    public CakeBuilder setSize(CakeSize size) {
+        this.size = size;
+        return this;
+    }
+
     public CakeBuilder setLayers(int layers) {
         this.layers = layers;
         return this;

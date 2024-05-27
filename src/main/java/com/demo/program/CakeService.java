@@ -13,6 +13,7 @@ public class CakeService {
 
     private List<String> randomFlavours = List.of("Red Velvet", "Strawberry", "Carrot", "Lemon",
             "Ginger", "Raspberry");
+    private List<CakeSize> cakeSizes = List.of(CakeSize.values());
     private Random random = new Random();
 
     public CakeService(ApplicationContext context) {
@@ -33,9 +34,12 @@ public class CakeService {
     public Cake getRandomCake() {
         String randomFlavour = randomFlavours.get(random.nextInt(randomFlavours.size()));
         int randomNumber = random.nextInt(1,6);
-        return cakeBuilder().makeSmallSize()
+        CakeSize size = cakeSizes.get(random.nextInt(cakeSizes.size()));
+
+        return cakeBuilder().setSize(size)
                 .setLayers(randomNumber)
                 .setCustomFlavour(randomFlavour)
+                .addFrosting()
                 .build();
     }
 
@@ -44,6 +48,7 @@ public class CakeService {
                 .setLayers(2)
                 .useChocolate()
                 .addFrosting()
+                .addDecorations()
                 .build();
     }
 
