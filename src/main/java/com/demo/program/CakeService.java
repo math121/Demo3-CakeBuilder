@@ -26,9 +26,9 @@ public class CakeService {
         return context.getBean(CakeBuilder.class);
     }
 
-    public Cake getCustomCake(String customFlavour) {
-        return cakeBuilder().makeMediumSize()
-                .setLayers(3)
+    public Cake getCustomCake(String customFlavour, CakeSize size, int layers) {
+        return cakeBuilder().setSize(size)
+                .setLayers(layers)
                 .setCustomFlavour(customFlavour)
                 .build();
     }

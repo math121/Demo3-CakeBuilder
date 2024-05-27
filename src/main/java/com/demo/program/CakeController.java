@@ -1,24 +1,34 @@
 package com.demo.program;
 
+import com.demo.program.cake_builder.Cake;
+import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CakeController {
 
+    private final BasicErrorController basicErrorController;
     private CakeService cakeService;
 
-    public CakeController(CakeService cakeService) {
+    public CakeController(CakeService cakeService, BasicErrorController basicErrorController) {
         this.cakeService = cakeService;
+        this.basicErrorController = basicErrorController;
     }
 
-    @GetMapping("customCake")
-    public String getCustomCake(@RequestParam String flavour) {
-        return cakeService.getCustomCake(flavour).toString();
+    @GetMapping("customCake/{flavour}/{size}/{layers}")
+    public String getCustomCake(@PathVariable String flavour,
+                                @PathVariable String size,
+                                @PathVariable int layers) {
+        //default
+        CakeSize cakeSize = switch (size.toLowerCase()) {
+            case "large" -> CakeSize.LARGE;
+            case "small" -> CakeSize.SMALL;
+            default -> CakeSize.MEDIUM;
+        };
+
+        return cakeService.getCustomCake(flavour, cakeSize, layers).toString();
     }
 
     @GetMapping("randomCake")
